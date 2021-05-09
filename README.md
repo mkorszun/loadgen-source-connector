@@ -16,6 +16,14 @@ Connector has following configuration options:
 | `mapping.providerId`         | Provider identifier                              | `strings` |                       |
 | `content.format`             | Format of the content: `byte_xml` or `byte_json` | `string`  | `byte_json`           |
 
+# Example configuration:
+
+~~~
+message={"a":"b"}
+mapping.providerId=123abc456
+kafka.topic=output-topic
+~~~
+
 # Output Data Format
 
 ~~~json
