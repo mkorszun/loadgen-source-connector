@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "5.3.0"
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id 'pmd'
+}
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+group 'com.meltwater.kafka.connect'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.apache.kafka:connect-api:2.1.1'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    testImplementation 'org.assertj:assertj-core:3.18.1'
+    testImplementation 'org.awaitility:awaitility:3.1.6'
+
+    // Kafka & Kafka Connect
+    testImplementation 'org.apache.kafka:connect-runtime:2.1.1'
+    testImplementation 'org.apache.kafka:kafka_2.12:2.1.1'
+
+    // Mock servers
+    testImplementation 'org.mockito:mockito-core:3.7.7'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+pmd {
+    consoleOutput = true
+    sourceSets = [sourceSets.main]
+    ruleSets = []
+    ruleSetFiles = files("config/pmd/rules.xml")
+}
